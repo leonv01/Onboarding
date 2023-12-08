@@ -196,7 +196,7 @@ Determine the timing values for a baud-rate of 250 kbit/s. Add these values to t
 Hint: The clock frequency of the STM board is 42 MHz.
 </p>
 
-### 3.3 Sending Message
+### 3.3 Sending Messages
 <p>
 Connect the PCAN adapter with the CAN-controller and start PCAN-View. Set the bitrate to 250 kbit/s. <img src="./img/can/pcanView.png" alt="PCAN-View"><br>
 In the upper half you can see the received packages. In the other half you can create a message with an ID and payload.
@@ -207,4 +207,21 @@ Read <a href="https://controllerstech.com/can-protocol-in-stm32/" target="_top">
 </p>
 <p>
 Hint: Before activating the Notifications for the CAN bus with <code>CAN_HAL_ActivateNotification</code> you need to start the CAN bus with <code>CAN_HAL_Start(&hcan1);</code>.
+</p>
+
+### 3.4 Receiving Messages
+<p>
+Follow the guide of the article and get familiar with filters. In order to receive messages a filter is necessary. For now let all messages pass through. <br>
+To send a message from your Windows system, right click on the lower half in PCAN-View to create a new message. You can define the ID, payload length and payload data. The cycletime defines the cyclic sending of data. Both extended frame and remote request are not necessary and can be left deselected.<img src="./img/can/pcanSendMessage.png" alt="PCAN new message">
+</p>
+<p>
+Implement the example from the article so that the LED blinks with the data given from the payload of the CAN message. Also add an 'echo', so that the STM board answers after each received message. 
+</p>
+
+### 3.5 Filter Messages
+<p>
+To understand how the filter works, you can follow <a href="https://youtu.be/JfWlIY0zAIc?feature=shared" target="_top">this YouTube video</a> which is also on the article that provides an understandable explanation.
+</p>
+<p>
+Change the filter settings so that only messages with the ID from 0x000 to 0x00F are accepted. You can also play around with different settings for the <code>FilterIdHigh</code> and <code>FilterMaskIdHigh</code> to get a better understanding.
 </p>
