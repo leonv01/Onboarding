@@ -1,6 +1,6 @@
 # Onboarding Solution
 
-# 1. User button LED toggle
+## 1. User button LED toggle
 <p>
 Configure both pins:<br>
 <img src="../img/blinki/UserButtonToggle.png" alt="User button configuration"><br>
@@ -20,7 +20,7 @@ int main(){<br>
 }
 </code>
 
-# 2. SSH Key generation and configuration
+### 1.2 SSH Key generation and configuration
 <p>
 To create a new environment variable, go to your Windows search bar and search for <strong>"Edit environment variables for your account"</strong>. <br>
 <img src="../img/ssh/EnvironmentVariables.png" alt="Environtment Variable Setup"><br>
@@ -42,7 +42,7 @@ Testing the authentification:<br>
 <img src="../img/ssh/SSHauthentification.png" alt="SSH authentification"><br>
 </p>
 
-# 3. Version Control with Git
+### 1.3 Version Control with Git
 <p>
 Initializing a local repository:<br>
 <img src="../img/git/GitInit.png" alt="Initializing repository"><br>
@@ -63,7 +63,7 @@ Pushing commit to remote repository:<br>
 <img src="../img/git/GitPush.png" alt="Pushing to remote repository">
 </p>
 
-# 4. Debugger
+### 1.4 Debugger
 <p>
 After <code>i = 7</code> iterations:<br>
 <img src="../img/debugger/debuggerVariables.png" alt="Debugger Variables"><br>

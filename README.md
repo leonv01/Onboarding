@@ -163,7 +163,7 @@ Add the needed dependencies for the Arm GNU Toolchain by installing the package 
 </ul>
 Check if it worked by printing out the version, e.g. <code>arm-none-eabi-gcc --version</code>
 
-### 2.2
+### 2.2 ST-Link
 <p>
 Clone <a href="https://github.com/Egon2k/STM32F446RE_MinimumBlinky/tree/main" target="_top">this repository</a> to your Linux subsystem. Get familiar with the code and understand what the program is doing. Also have a look at the <strong>Makefile</strong>. <a href="https://opensource.com/article/18/8/what-how-makefile" target="_top">Here</a> is an explanation with examples of how Makefiles work and how to use them. 
 </p>
@@ -177,5 +177,34 @@ You can test out the ST-Link tool by open up powershell and typing: <code> ST-LI
 Extend the Makefile by another target, e.g. <strong>flash</strong>. You can use Windows applications within WSL by using the programs with the .exe extension. Use the ST-Link to flash the program to the microcontroller and set parameters right. Also implement a target to erase the program from the microcontroller memory.
 </p>
 <p>
-Hint: The address for the flashing is <strong>0x08000000</strong>.
+Hint: The address for the flashing is <strong>0x08000000</strong>. Also the microcontroller needs to be reset after flashing.<br>
+</p>
+
+## 3. CAN bus
+### 3.1 Prerequisites
+<p>
+Inform yourself about the CAN bus and how it works. <a href="https://en.wikipedia.org/wiki/CAN_bus" target="_top">This wikipedia article</a> provides a good summary of the protocol. Also you need to install PCAN-View from <a href="https://www.peak-system.com/PCAN-USB.199.0.html" target="_top">here</a> to send and/or receive data to your Windows system.
+</p>
+
+### 3.2 Setting up a new project
+<p>
+Connect the MCP2551 CAN-controller to the STM board. Look up the <a href="https://os.mbed.com/platforms/ST-Nucleo-F446RE/" target="_top">pinlayout</a> and create a new STM32Cube project. Configure the pins so that they can use the CAN protocol. Afterwards go to the CAN1 configuration under the category Connectivity.</p>
+<p>
+In order to send messages via CAN, you have to setup the bit timings. <a href="http://www.bittiming.can-wiki.info/" target="_top">This website</a> gives you a bunch of presets for the configuration. Change the board to <code>ST Microelectronics bxCAN</code>. You can ignore the <code>Sample-Point</code> and <code>SJW</code> values. <br>
+Determine the timing values for a baud-rate of 250 kbit/s. Add these values to the .ioc file int he CubeIDE. Also take a look at the example of the sample point and understand what it does.</p>
+<p>
+Hint: The clock frequency of the STM board is 42 MHz.
+</p>
+
+### 3.3 Sending Message
+<p>
+Connect the PCAN adapter with the CAN-controller and start PCAN-View. Set the bitrate to 250 kbit/s. <img src="./img/can/pcanView.png" alt="PCAN-View"><br>
+In the upper half you can see the received packages. In the other half you can create a message with an ID and payload.
+<img src="./img/can/pcanViewSendReceive.png" alt="PCAN-View Send and Receive">
+</p>
+<p>
+Read <a href="https://controllerstech.com/can-protocol-in-stm32/" target="_top">this article</a> to setup the CAN dataframe. Extend your main program to allow sending a message from the STM board to your Windows system by pressing the blue user button. 
+</p>
+<p>
+Hint: Before activating the Notifications for the CAN bus with <code>CAN_HAL_ActivateNotification</code> you need to start the CAN bus with <code>CAN_HAL_Start(&hcan1);</code>.
 </p>
