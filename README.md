@@ -128,6 +128,8 @@ You can also step back out of the function by using <strong>step return</strong>
 What value does <strong>result</strong> have after <strong>i = 7</strong> iterations?
 </p>
 
+--
+
 ## 2. Toolchain
 ### 2.1 Setting up workspace
 <p>
@@ -135,8 +137,7 @@ Windows has an integrated Linux environment, including command-line tools
 and applications that can access the Windows file system and programs. This
 allows using Unix exclusive software to run on Windows without a big over-
 head. This feature called WSL (Windows Subsystem for Linux). Read <a href="https://learn.microsoft.com/en-us/windows/wsl/install" target="_top">this documentation</a> to see the needed commands. <br>
-You also have to install the <a href="https://www.st.com/en/development-tools/stsw-link004.html" target="_top">STM32 ST-Link utitlity</a>. It comes with a com-
-mand line interface executable which is mandatory for flashing data to the
+You also have to install the <a href="https://www.st.com/en/development-tools/stsw-link004.html" target="_top">STM32 ST-Link utitlity</a>. It comes with a command line interface executable which is mandatory for flashing data to the
 hardware.
 </p>
 <p>
@@ -153,7 +154,7 @@ Switch back to your Windows system. Install the the <a href="https://developer.a
 This is done for the C-Compiler, add the rest by replacing the gcc with the other four binary files.
 </p>
 <p>
-Hint: You can use <code>explorere.exe</code> in the WSL subsystem to open up the Windows file explorer within the Linux filesystem.
+Hint: You can use <code>explorer.exe</code> in the WSL subsystem to open up the Windows file explorer within the Linux filesystem.
 </p>
 <p>
 Add the needed dependencies for the Arm GNU Toolchain by installing the package <strong>libncurses-dev</strong>. You need to make the package compatible. You can do this by creating the two symbolic links:
@@ -179,6 +180,8 @@ Extend the Makefile by another target, e.g. <strong>flash</strong>. You can use 
 <p>
 Hint: The address for the flashing is <strong>0x08000000</strong>. Also the microcontroller needs to be reset after flashing.<br>
 </p>
+
+--
 
 ## 3. CAN bus
 ### 3.1 Prerequisites
